@@ -5,7 +5,10 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 
@@ -14,7 +17,9 @@ public class UserModel extends Audit implements UserDetails {
 
     @Getter
     @Setter
+    @Column(unique = true)
     @NotBlank(message = "Enter email id")
+    @Email( message = "Email syntax is invalid!")
     private String username;
 
     @Getter
